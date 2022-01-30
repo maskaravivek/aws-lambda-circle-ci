@@ -8,7 +8,7 @@ current_build="aws-s3-upload-lambda"
 
 echo "Installing dependencies..."
 # install dependencies
-pip install -r requirements.txt --target ./package
+python3.7 -m pip install install -r requirements.txt --target ./package
 
 echo "Zipping installing package..."
 # Zip deployment package

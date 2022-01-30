@@ -16,9 +16,9 @@ jobs:
       - run:
           name: Install awscli, jq and npm
           command: |
-            apt-get update
-            apt-get install -y jq zip
-            python -m pip install awscli --upgrade
+            sudo apt-get update
+            sudo apt-get install -y jq zip
+            sudo pip install awscli --upgrade
             aws configure set default.region $AWS_REGION
       - run:
           name: Deploy Functions

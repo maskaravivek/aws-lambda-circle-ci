@@ -3,7 +3,7 @@ jobs:
   build_dev:
     working_directory: ~/project
     docker:
-      - image: buildpack-deps:xenial
+      - image: cimg/python:3.7.12
     environment:
       DEPLOY_ENVIRONMENT: dev
     steps:
@@ -17,12 +17,8 @@ jobs:
           name: Install awscli, jq and npm
           command: |
             apt-get update
-            apt-get install -y jq zip python3 python3-pip
-            apt-get install -y software-properties-common
-            add-apt-repository -y ppa:deadsnakes/ppa
-            apt-get update
-            apt-get install -y python3.7
-            python3.7 -m pip install awscli --upgrade
+            apt-get install -y jq zip
+            python -m pip install awscli --upgrade
             aws configure set default.region $AWS_REGION
       - run:
           name: Deploy Functions

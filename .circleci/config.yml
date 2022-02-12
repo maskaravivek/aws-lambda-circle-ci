@@ -1,4 +1,6 @@
 version: 2
+orbs:
+  aws-cli: circleci/aws-cli@2.0.6
 jobs:
   build_dev:
     working_directory: ~/project
@@ -19,7 +21,10 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y jq zip
             pip install awscli --upgrade
-            aws configure set default.region $AWS_REGION
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_ACCESS_SECRET
+          aws-region: AWS_REGION_NAME
       - run:
           name: Deploy Functions
           command: |

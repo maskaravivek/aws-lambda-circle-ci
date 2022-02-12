@@ -1,13 +1,16 @@
-version: 2.1
+version: 2.0
 orbs:
   aws-cli: circleci/aws-cli@2.0.6
 
 jobs:
   setup_creds:
-    - aws-cli/setup:
-        aws-access-key-id: AWS_ACCESS_KEY
-        aws-secret-access-key: AWS_ACCESS_SECRET
-        aws-region: AWS_REGION_NAME
+    docker:
+      - image: cimg/python:3.7.12
+    steps:
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_ACCESS_SECRET
+          aws-region: AWS_REGION_NAME
   build_dev:
     working_directory: ~/project
     docker:
